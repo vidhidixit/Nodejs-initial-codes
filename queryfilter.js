@@ -1,6 +1,9 @@
+//this is a simple server side nodejs code to demonstrate query filtering in nodejs
+//including requirements
 var http=require('http');
 var url=require('url');
 
+//creating the array of objects
 var tasklist=[
     {
         title: 'Task 1',
@@ -27,14 +30,19 @@ var tasklist=[
         id: 4
         }
 ];
+//creating the server
 var server=http.createServer((req,res)=>{
        var strings=url.parse(req.url,true).query;
+
+       //taking the parameters to filter query
        var deadline=strings.deadline;
        var id=strings.id;
        for(var i=0;i<tasklist.length;i++)
        {
+           //checking if the object is in accordance with the query raised
            if(tasklist[i].deadline===deadline&&id!=tasklist[i].id)
            {
+               //writing th html onto the webpage
                res.write(`
                <div>
                     <h2>${tasklist[i].title}</h2>

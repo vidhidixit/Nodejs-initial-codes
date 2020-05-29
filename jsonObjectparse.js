@@ -1,7 +1,9 @@
+//objective is to parse a json object using server side code of nodejs
+//including dependencies
 var http=require('http');
 var url=require('url');
 
-
+//creating an array of objects
 var tasklist=[
     {
         title: 'Task 1',
@@ -29,13 +31,16 @@ var tasklist=[
         }
 ];
 
-
+//creating server
 var server=http.createServer((req,res)=> {
+    //declaring response array
     var responseArray=[];
+    //copying contents to the response array
     for(var i=0;i<tasklist.length;i++)
     {
         responseArray.push(tasklist[i]);
     }
+    //converting to json
     var stringarray=JSON.stringify(responseArray);
     res.write(stringarray);
     res.end();

@@ -1,6 +1,10 @@
+//this is a simple server side nodejs code to render an array of objects 
+
+//including requirements
 var http=require('http');
 var url=require('url');
 
+//creating an array of objects
 var tasklist=[
     {
         title: 'Task 1',
@@ -28,11 +32,12 @@ var tasklist=[
         }
 ];
 
-
+//creating a server
 var server= http.createServer((req,res)=>{
     res.write("<h1>Task List!!</h1>");
     for(var i=0;i<tasklist.length;i++)
     {
+        //writing the html onto the webpage
         res.write( `<div>
                     <h2>${tasklist[i].title}</h2>
                     <h3>${tasklist[i].description}</h3>
